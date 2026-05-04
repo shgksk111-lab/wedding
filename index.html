@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Wedding Invitation</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
+
+<style>
+body {
+  margin: 0;
+  background: #e9e5df;
+  font-family: 'Pretendard', sans-serif;
+}
+
+.wrapper {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  padding: 40px 10px;
+}
+
+.mobile {
+  width: 320px;
+  background: #f7f4ef;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.section {
+  padding: 28px 20px;
+}
+
+.hero {
+  height: 420px;
+  background: url('https://images.unsplash.com/photo-1520854221256-17451cc331bf?q=80&w=1200') center/cover;
+  display: flex;
+  align-items: flex-end;
+  padding: 20px;
+  color: white;
+}
+
+.hero h1 {
+  font-family: 'Outfit';
+  font-size: 22px;
+  letter-spacing: 4px;
+}
+
+.title {
+  font-family: 'Outfit';
+  font-size: 14px;
+  letter-spacing: 3px;
+  margin-bottom: 16px;
+}
+
+.text {
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+.divider {
+  width: 20px;
+  height: 1px;
+  background: #111;
+  margin: 16px 0;
+}
+
+.img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+}
+
+.gallery img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+}
+
+.gallery img.big {
+  grid-column: span 2;
+  height: 180px;
+}
+
+.footer {
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.footer h2 {
+  font-family: 'Outfit';
+  font-size: 16px;
+  letter-spacing: 4px;
+}
+
+</style>
+</head>
+<body>
+
+<div class="wrapper">
+
+  <!-- LEFT COLUMN -->
+  <div class="mobile">
+    <div class="hero">
+      <h1>JINYOUNG & HANA</h1>
+    </div>
+
+    <div class="section">
+      <div class="title">01 INVITATION</div>
+      <div class="divider"></div>
+      <div class="text">
+        서로 마주보며 키워온 사랑으로<br/>
+        이제는 한 곳을 바라보며 걸어가려합니다.<br/><br/>
+        아름다운 가을날 저희의 새로운 첫걸음을<br/>
+        축복해주시면 더없는 행복으로 간직하겠습니다<br/><br/>
+        김진영 · 노하나 올림
+      </div>
+    </div>
+
+    <img class="img" src="https://images.unsplash.com/photo-1504196606672-aef5c9cefc92?q=80&w=800" />
+
+    <div class="section">
+      <div class="title">02 DATE & VENUE</div>
+      <div class="divider"></div>
+      <div class="text">
+        2026.10.17 SAT 12:30<br/><br/>
+        Irum Wedding Convention<br/>
+        서울시 마포구 마포대로 78
+      </div>
+    </div>
+  </div>
+
+  <!-- MIDDLE COLUMN -->
+  <div class="mobile">
+    <div class="section">
+      <div class="title">03 FAMILY</div>
+      <div class="divider"></div>
+    </div>
+
+    <img class="img" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=800" />
+    <div class="section text" style="text-align:center;">
+      아버지 김만석 · 어머니 이광윤<br/>
+      의 아들 진영
+    </div>
+
+    <img class="img" src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=800" />
+    <div class="section text" style="text-align:center;">
+      아버지 노군주 · 어머니 김명애<br/>
+      의 딸 하나
+    </div>
+
+    <div class="section">
+      <div class="title">04 LOCATION</div>
+      <div class="divider"></div>
+      <img class="img" src="https://images.unsplash.com/photo-1502920917128-1aa500764b36?q=80&w=1200" />
+      <div class="text" style="margin-top:10px;">
+        서울시 마포구 마포대로 78<br/>
+        이룸웨딩컨벤션
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT COLUMN -->
+  <div class="mobile">
+    <div class="section">
+      <div class="title">05 GALLERY</div>
+      <div class="divider"></div>
+
+      <div class="gallery">
+        <img class="big" src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=800" />
+        <img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?q=80&w=800" />
+        <img src="https://images.unsplash.com/photo-1478145046317-39f10e56b5e9?q=80&w=800" />
+        <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=800" />
+        <img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?q=80&w=800" />
+      </div>
+    </div>
+
+    <div class="footer">
+      <h2>JINYOUNG & HANA</h2>
+      <div style="font-size:10px; letter-spacing:3px; margin-top:6px;">WEDDING INVITATION</div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
