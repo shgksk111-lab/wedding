@@ -1,193 +1,875 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Wedding Invitation</title>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
-<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
+<html lang="ko"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <title>Jinyoung &amp; Hana 결혼합니다</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/@sunn-us/suit@1.0.0/fonts/suit-variable.min.css" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-<style>
-body {
-  margin: 0;
-  background: #e9e5df;
-  font-family: 'Pretendard', sans-serif;
-}
+    :root {
+      --bg: #EDE8DF;
+      --bg-warm: #E8E2D9;
+      --text: #2A2520;
+      --text-muted: #9A9490;
+      --text-light: #7A7470;
+      --divider: #C8C2BA;
+      --btn-bg: #2A2520;
+      --btn-text: #F5F0E8;
+      --white: #FFFFFF;
+      --box-bg: #F7F3EE;
+    }
 
-.wrapper {
-  display: flex;
-  gap: 20px;
-  justify-content: center;
-  padding: 40px 10px;
-}
+    html { scroll-behavior: smooth; }
 
-.mobile {
-  width: 320px;
-  background: #f7f4ef;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-}
+    body {
+      font-family: 'SUIT', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      max-width: 430px;
+      margin: 0 auto;
+      overflow-x: hidden;
+    }
 
-.section {
-  padding: 28px 20px;
-}
+    /* ─── COVER ─── */
+    .cover {
+      position: relative;
+      width: 100%;
+      height: 100svh;
+      min-height: 600px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding: 60px 20px 56px;
+    }
 
-.hero {
-  height: 420px;
-  background: url('https://images.unsplash.com/photo-1520854221256-17451cc331bf?q=80&w=1200') center/cover;
-  display: flex;
-  align-items: flex-end;
-  padding: 20px;
-  color: white;
-}
+    .cover-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+    }
 
-.hero h1 {
-  font-family: 'Outfit';
-  font-size: 22px;
-  letter-spacing: 4px;
-}
+    .cover-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.15) 0%,
+        rgba(0,0,0,0.02) 40%,
+        rgba(0,0,0,0.05) 60%,
+        rgba(0,0,0,0.25) 100%
+      );
+    }
 
-.title {
-  font-family: 'Outfit';
-  font-size: 14px;
-  letter-spacing: 3px;
-  margin-bottom: 16px;
-}
+    .cover-top {
+      position: relative;
+      text-align: center;
+    }
 
-.text {
-  font-size: 12px;
-  line-height: 1.8;
-}
+    .cover-sub {
+      font-family: 'SUIT', sans-serif;
+      font-size: 11px;
+      font-weight: 300;
+      letter-spacing: 0.3em;
+      color: rgba(255,255,255,0.82);
+      margin-bottom: 10px;
+    }
 
-.divider {
-  width: 20px;
-  height: 1px;
-  background: #111;
-  margin: 16px 0;
-}
+    .cover-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(36px, 11vw, 52px);
+      font-weight: 400;
+      color: #fff;
+      line-height: 1.1;
+      letter-spacing: 0.01em;
+      white-space: nowrap;
+    }
 
-.img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-}
+    .cover-bottom {
+      position: relative;
+      text-align: center;
+    }
 
-.gallery {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 6px;
-}
+    .cover-date {
+      font-family: 'SUIT', sans-serif;
+      font-size: 14px;
+      font-weight: 300;
+      letter-spacing: 0.08em;
+      color: rgba(255,255,255,0.92);
+      margin-bottom: 6px;
+    }
 
-.gallery img {
-  width: 100%;
-  height: 120px;
-  object-fit: cover;
-}
+    .cover-names {
+      font-family: 'SUIT', sans-serif;
+      font-size: 13px;
+      font-weight: 300;
+      letter-spacing: 0.12em;
+      color: rgba(255,255,255,0.85);
+    }
 
-.gallery img.big {
-  grid-column: span 2;
-  height: 180px;
-}
+    /* ─── SHARED SECTION STYLES ─── */
+    section {
+      background: var(--bg);
+      padding: 60px 28px;
+    }
 
-.footer {
-  padding: 40px 20px;
-  text-align: center;
-}
+    .section-num {
+      display: block;
+      text-align: center;
+      font-family: 'Outfit', sans-serif;
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.25em;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
 
-.footer h2 {
-  font-family: 'Outfit';
-  font-size: 16px;
-  letter-spacing: 4px;
-}
+    .section-title {
+      display: block;
+      text-align: center;
+      font-family: 'SUIT', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      color: var(--text);
+      margin-bottom: 44px;
+    }
 
-</style>
+    /* ─── INVITATION ─── */
+    .invitation-text {
+      text-align: center;
+      font-family: 'SUIT', sans-serif;
+      font-size: 13.5px;
+      font-weight: 300;
+      line-height: 2.0;
+      color: var(--text);
+      margin-bottom: 32px;
+      word-break: keep-all;
+    }
+
+    .invitation-sig {
+      text-align: center;
+      font-family: 'SUIT', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: var(--text);
+      margin-bottom: 48px;
+    }
+
+    .invitation-photo {
+      width: 100%;
+      aspect-ratio: 16/10;
+      object-fit: cover;
+      display: block;
+      background: var(--divider);
+    }
+
+    /* ─── DATE & VENUE ─── */
+    .countdown-box {
+      border: 1px solid var(--divider);
+      border-radius: 4px;
+      padding: 16px 20px;
+      text-align: center;
+      font-family: 'SUIT', sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--text);
+      margin-bottom: 28px;
+      letter-spacing: 0.02em;
+    }
+
+    .countdown-box strong {
+      font-weight: 700;
+    }
+
+    .venue-divider {
+      width: 20px;
+      height: 1px;
+      background: var(--divider);
+      margin: 24px auto;
+    }
+
+    .venue-date {
+      text-align: center;
+      font-family: 'SUIT', sans-serif;
+      font-size: 16px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .venue-name {
+      text-align: center;
+      font-family: 'SUIT', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+
+    .venue-address {
+      text-align: center;
+      font-family: 'SUIT', sans-serif;
+      font-size: 12.5px;
+      font-weight: 300;
+      line-height: 1.9;
+      color: var(--text-light);
+    }
+
+    /* ─── FAMILY ─── */
+    .family-member {
+      margin-bottom: 48px;
+    }
+
+    .family-member:last-child {
+      margin-bottom: 0;
+    }
+
+    .family-photo {
+      width: 100%;
+      aspect-ratio: 1/1;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      margin-bottom: 20px;
+      background: var(--divider);
+    }
+
+    .family-info {
+      text-align: center;
+    }
+
+    .family-parents {
+      font-family: 'SUIT', sans-serif;
+      font-size: 13px;
+      font-weight: 300;
+      letter-spacing: 0.05em;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .family-child {
+      font-family: 'SUIT', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    /* ─── LOCATION ─── */
+    .location-address {
+      text-align: center;
+      font-family: 'SUIT', sans-serif;
+      font-size: 12.5px;
+      font-weight: 300;
+      line-height: 1.9;
+      color: var(--text-light);
+      margin-bottom: 24px;
+    }
+
+    .map-container {
+      width: 100%;
+      aspect-ratio: 4/3;
+      background: #D8D4CC;
+      border: 1px solid var(--divider);
+      margin-bottom: 12px;
+      overflow: hidden;
+    }
+
+    .map-container iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .btn-dark {
+      display: block;
+      width: 100%;
+      padding: 15px 0;
+      background: var(--btn-bg);
+      color: var(--btn-text);
+      text-align: center;
+      font-family: 'SUIT', sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      margin-bottom: 40px;
+    }
+
+    .transport-section {
+      margin-bottom: 28px;
+    }
+
+    .transport-title {
+      text-align: center;
+      font-family: 'SUIT', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--text);
+      margin-bottom: 10px;
+    }
+
+    .transport-detail {
+      text-align: center;
+      font-family: 'SUIT', sans-serif;
+      font-size: 12px;
+      font-weight: 300;
+      line-height: 1.9;
+      color: var(--text-light);
+    }
+
+    .transport-divider {
+      width: 20px;
+      height: 1px;
+      background: var(--divider);
+      margin: 24px auto;
+    }
+
+    /* ─── INFORMATION ─── */
+    .info-title {
+      text-align: center;
+      font-family: 'SUIT', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: var(--text);
+      margin-bottom: 20px;
+    }
+
+    .info-row {
+      text-align: center;
+      font-family: 'SUIT', sans-serif;
+      font-size: 12.5px;
+      font-weight: 300;
+      line-height: 2.0;
+      color: var(--text-light);
+      margin-bottom: 4px;
+    }
+
+    .info-row strong {
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .info-note {
+      text-align: center;
+      font-family: 'SUIT', sans-serif;
+      font-size: 11px;
+      font-weight: 300;
+      color: var(--text-muted);
+      margin-top: 12px;
+      margin-bottom: 28px;
+      letter-spacing: 0.02em;
+    }
+
+    /* ─── GALLERY ─── */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px;
+    }
+
+    .gallery-item {
+      aspect-ratio: 1/1;
+      background: var(--bg-warm);
+      overflow: hidden;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* ─── ACCOUNT ─── */
+    .account-desc {
+      text-align: center;
+      font-family: 'SUIT', sans-serif;
+      font-size: 13px;
+      font-weight: 300;
+      line-height: 1.9;
+      color: var(--text-light);
+      margin-bottom: 32px;
+      word-break: keep-all;
+    }
+
+    .account-box {
+      background: var(--white);
+      border-radius: 6px;
+      padding: 24px 20px;
+      margin-bottom: 14px;
+    }
+
+    .account-side-title {
+      font-family: 'SUIT', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--text);
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--divider);
+      margin-bottom: 16px;
+    }
+
+    .account-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+
+    .account-row:last-child { margin-bottom: 0; }
+
+    .account-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .account-person {
+      font-family: 'SUIT', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .account-number {
+      font-family: 'SUIT', sans-serif;
+      font-size: 11.5px;
+      font-weight: 300;
+      color: var(--text-light);
+      letter-spacing: 0.03em;
+    }
+
+    .copy-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      color: var(--text-muted);
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .copy-btn:active { opacity: 0.5; }
+
+    .copy-btn svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    /* ─── QUOTE / CLOSING ─── */
+    .closing {
+      position: relative;
+      width: 100%;
+      height: 100svh;
+      min-height: 500px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .closing-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 30%;
+    }
+
+    .closing-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.28);
+    }
+
+    .closing-text {
+      position: relative;
+      text-align: center;
+      padding: 0 40px;
+    }
+
+    .closing-quote {
+      font-family: 'SUIT', sans-serif;
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 2.0;
+      color: rgba(255,255,255,0.92);
+      word-break: keep-all;
+    }
+
+    .closing-source {
+      display: block;
+      font-family: 'SUIT', sans-serif;
+      font-size: 12px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.65);
+      margin-top: 20px;
+      letter-spacing: 0.03em;
+    }
+
+    /* ─── TOAST ─── */
+    .toast {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: rgba(40,35,30,0.9);
+      color: #fff;
+      font-family: 'SUIT', sans-serif;
+      font-size: 12px;
+      font-weight: 300;
+      padding: 10px 20px;
+      border-radius: 20px;
+      opacity: 0;
+      transition: opacity 0.25s, transform 0.25s;
+      pointer-events: none;
+      white-space: nowrap;
+      z-index: 9999;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+  </style>
 </head>
 <body>
 
-<div class="wrapper">
+<!-- ═══════════════ COVER ═══════════════ -->
+<div class="cover">
+  <img class="cover-bg" src="images/cover.png" alt="커버 사진">
+  <div class="cover-overlay"></div>
 
-  <!-- LEFT COLUMN -->
-  <div class="mobile">
-    <div class="hero">
-      <h1>JINYOUNG & HANA</h1>
-    </div>
-
-    <div class="section">
-      <div class="title">01 INVITATION</div>
-      <div class="divider"></div>
-      <div class="text">
-        서로 마주보며 키워온 사랑으로<br/>
-        이제는 한 곳을 바라보며 걸어가려합니다.<br/><br/>
-        아름다운 가을날 저희의 새로운 첫걸음을<br/>
-        축복해주시면 더없는 행복으로 간직하겠습니다<br/><br/>
-        김진영 · 노하나 올림
-      </div>
-    </div>
-
-    <img class="img" src="https://images.unsplash.com/photo-1504196606672-aef5c9cefc92?q=80&w=800" />
-
-    <div class="section">
-      <div class="title">02 DATE & VENUE</div>
-      <div class="divider"></div>
-      <div class="text">
-        2026.10.17 SAT 12:30<br/><br/>
-        Irum Wedding Convention<br/>
-        서울시 마포구 마포대로 78
-      </div>
-    </div>
+  <div class="cover-top">
+    <p class="cover-sub">WEDDING INVITATION</p>
+    <h1 class="cover-title">Jinyoung &amp; Hana</h1>
   </div>
 
-  <!-- MIDDLE COLUMN -->
-  <div class="mobile">
-    <div class="section">
-      <div class="title">03 FAMILY</div>
-      <div class="divider"></div>
-    </div>
-
-    <img class="img" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=800" />
-    <div class="section text" style="text-align:center;">
-      아버지 김만석 · 어머니 이광윤<br/>
-      의 아들 진영
-    </div>
-
-    <img class="img" src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=800" />
-    <div class="section text" style="text-align:center;">
-      아버지 노군주 · 어머니 김명애<br/>
-      의 딸 하나
-    </div>
-
-    <div class="section">
-      <div class="title">04 LOCATION</div>
-      <div class="divider"></div>
-      <img class="img" src="https://images.unsplash.com/photo-1502920917128-1aa500764b36?q=80&w=1200" />
-      <div class="text" style="margin-top:10px;">
-        서울시 마포구 마포대로 78<br/>
-        이룸웨딩컨벤션
-      </div>
-    </div>
+  <div class="cover-bottom">
+    <p class="cover-date">2026. 10. 17. SAT / PM 12:30</p>
+    <p class="cover-names">김진영 · 노하나</p>
   </div>
-
-  <!-- RIGHT COLUMN -->
-  <div class="mobile">
-    <div class="section">
-      <div class="title">05 GALLERY</div>
-      <div class="divider"></div>
-
-      <div class="gallery">
-        <img class="big" src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=800" />
-        <img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?q=80&w=800" />
-        <img src="https://images.unsplash.com/photo-1478145046317-39f10e56b5e9?q=80&w=800" />
-        <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=800" />
-        <img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?q=80&w=800" />
-      </div>
-    </div>
-
-    <div class="footer">
-      <h2>JINYOUNG & HANA</h2>
-      <div style="font-size:10px; letter-spacing:3px; margin-top:6px;">WEDDING INVITATION</div>
-    </div>
-  </div>
-
 </div>
 
-</body>
-</html>
+<!-- ═══════════════ 01 INVITATION ═══════════════ -->
+<section id="invitation">
+  <span class="section-num">01</span>
+  <span class="section-title">INVITATION</span>
+
+  <p class="invitation-text">
+    서로 마주보며 키워온 사랑으로<br>
+    이제는 한 곳을 바라보며 걸어가려합니다.<br>
+    아름다운 가을날 저희의 새로운 첫걸음을<br>
+    축복해주시면 더없는 행복으로 간직하겠습니다
+  </p>
+
+  <p class="invitation-sig">김진영·노하나 올림</p>
+
+  <img class="invitation-photo" src="images/invitation.png" alt="커플 사진">
+</section>
+
+<!-- ═══════════════ 02 DATE & VENUE ═══════════════ -->
+<section id="date-venue">
+  <span class="section-num">02</span>
+  <span class="section-title">DATE &amp; VENUE</span>
+
+  <div class="countdown-box">
+    진영 하나 결혼식이 <strong id="countdown-days">160</strong>일 남았습니다
+  </div>
+
+  <div class="venue-divider"></div>
+
+  <p class="venue-date">2026. 10. 17 SAT PM 12:30</p>
+  <p class="venue-name">이룸웨딩컨벤션</p>
+  <p class="venue-address">
+    서울시 마포구 마포대로 78 경찰공제회 5층<br>
+    02-714-2121
+  </p>
+</section>
+
+<!-- ═══════════════ 03 FAMILY ═══════════════ -->
+<section id="family">
+  <span class="section-num">03</span>
+  <span class="section-title">FAMILY</span>
+
+  <div class="family-member">
+    <img class="family-photo" src="images/groom.png" alt="신랑 사진">
+    <div class="family-info">
+      <p class="family-parents">아버지 김만석 · 어머니 이광윤</p>
+      <p class="family-child">의 아들 <strong>진영</strong></p>
+    </div>
+  </div>
+
+  <div class="family-member">
+    <img class="family-photo" src="images/bride.png" alt="신부 사진">
+    <div class="family-info">
+      <p class="family-parents">아버지 노군주 · 어머니 김명애</p>
+      <p class="family-child">의 딸 <strong>하나</strong></p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ 04 LOCATION ═══════════════ -->
+<section id="location">
+  <span class="section-num">04</span>
+  <span class="section-title">LOCATION</span>
+
+  <p class="location-address">
+    서울시 마포구 마포대로 78 경찰공제회 5층<br>
+    이룸웨딩컨벤션 02-714-2121
+  </p>
+
+  <div class="map-container">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3163.8!2d126.9513!3d37.5443!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357c98c2!2z7J207Iuc7JW866GcIOuniOyduO2ajA!5e0!3m2!1sko!2skr!4v1" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="이룸웨딩컨벤션 지도">
+    </iframe>
+  </div>
+
+  <a class="btn-dark" href="https://map.kakao.com/link/search/서울시 마포구 마포대로 78 경찰공제회" target="_blank" rel="noopener noreferrer">
+    지도 앱에서 보기
+  </a>
+
+  <div class="transport-section">
+    <p class="transport-title">자가용</p>
+    <p class="transport-detail">
+      네비게이션 '서울특별시 마포구 마포대로 78' 검색<br>
+      (2시간 무료 주차)
+    </p>
+  </div>
+
+  <div class="transport-divider"></div>
+
+  <div class="transport-section">
+    <p class="transport-title">지하철</p>
+    <p class="transport-detail">
+      5,6호선 공덕역 8번 출구 (도보 2분 거리)<br>
+      5호선 마포역 3번 출구 (도보 5분 거리)<br>
+      경의선, 공항철도 공덕역 9번 출구 (도보 2분 거리)
+    </p>
+  </div>
+
+  <div class="transport-divider"></div>
+
+  <div class="transport-section">
+    <p class="transport-title">버스</p>
+    <p class="transport-detail">
+      공항버스 6015, 6021, 6702<br>
+      간선버스 160, 260, 463, 600<br>
+      지선버스 7013A, 7013B, 7016, 7611, 7613<br>
+      급행버스 8601, 2500, 8600
+    </p>
+  </div>
+</section>
+
+<!-- ═══════════════ 05 INFORMATION ═══════════════ -->
+<section id="information">
+  <span class="section-num">05</span>
+  <span class="section-title">INFORMATION</span>
+
+  <p class="info-title">전세버스 운행 안내</p>
+
+  <p class="info-row"><strong>출발 시간</strong> : 오전 00시 00분 출발</p>
+  <p class="info-row"><strong>탑승 및 하차 장소</strong> : ○○구 ○○역 O번 출구 앞</p>
+  <p class="info-row"><strong>차량 번호</strong> : ○○○○○호</p>
+  <p class="info-row"><strong>인솔자 연락처</strong> : 홍길동 (010-XXXX-YYYY)</p>
+  <p class="info-note">※ 당일 문의는 인솔자에게 연락 부탁드립니다.</p>
+
+  <a class="btn-dark" href="#" onclick="alert('탑승의사를 전달해주세요.'); return false;">
+    탑승의사 전달하기
+  </a>
+</section>
+
+<!-- ═══════════════ 06 GALLERY ═══════════════ -->
+<section id="gallery" style="padding-left:0;padding-right:0;padding-bottom:0;">
+  <span class="section-num" style="display:block;padding-top:0;">06</span>
+  <span class="section-title">GALLERY</span>
+
+  <div class="gallery-grid">
+    <div class="gallery-item"><img src="images/gallery1.png" alt="갤러리 1"></div>
+    <div class="gallery-item"><img src="images/gallery2.png" alt="갤러리 2"></div>
+    <div class="gallery-item"><img src="images/gallery3.png" alt="갤러리 3"></div>
+    <div class="gallery-item"><img src="images/gallery4.png" alt="갤러리 4"></div>
+    <div class="gallery-item"><img src="images/gallery5.png" alt="갤러리 5"></div>
+    <div class="gallery-item"><img src="images/gallery6.png" alt="갤러리 6"></div>
+    <div class="gallery-item"><img src="images/gallery7.png" alt="갤러리 7"></div>
+    <div class="gallery-item"><img src="images/gallery8.png" alt="갤러리 8"></div>
+    <div class="gallery-item"><img src="images/gallery9.png" alt="갤러리 9"></div>
+    <div class="gallery-item"><img src="images/gallery10.png" alt="갤러리 10"></div>
+    <div class="gallery-item"><img src="images/gallery11.png" alt="갤러리 11"></div>
+    <div class="gallery-item"><img src="images/gallery12.png" alt="갤러리 12"></div>
+    <div class="gallery-item"><img src="images/gallery13.png" alt="갤러리 13"></div>
+    <div class="gallery-item"><img src="images/gallery14.png" alt="갤러리 14"></div>
+  </div>
+</section>
+
+<!-- ═══════════════ 07 ACCOUNT ═══════════════ -->
+<section id="account">
+  <span class="section-num">07</span>
+  <span class="section-title">ACCOUNT</span>
+
+  <p class="account-desc">
+    참석이 어려우신 분들을 위해<br>
+    계좌번호를 기재하였습니다 따뜻한 마음으로<br>
+    양해 부탁드립니다.
+  </p>
+
+  <div class="account-box">
+    <p class="account-side-title">신랑측 계좌번호</p>
+
+    <div class="account-row">
+      <div class="account-info">
+        <span class="account-person">김진영</span>
+        <span class="account-number">국민은행 000-00000-0000</span>
+      </div>
+      <button class="copy-btn" onclick="copyAccount('000-00000-0000', '김진영')" aria-label="계좌번호 복사">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+        </svg>
+      </button>
+    </div>
+
+    <div class="account-row">
+      <div class="account-info">
+        <span class="account-person">김만석</span>
+        <span class="account-number">국민은행 000-00000-0000</span>
+      </div>
+      <button class="copy-btn" onclick="copyAccount('000-00000-0000', '김만석')" aria-label="계좌번호 복사">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+        </svg>
+      </button>
+    </div>
+
+    <div class="account-row">
+      <div class="account-info">
+        <span class="account-person">이광윤</span>
+        <span class="account-number">국민은행 000-00000-0000</span>
+      </div>
+      <button class="copy-btn" onclick="copyAccount('000-00000-0000', '이광윤')" aria-label="계좌번호 복사">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="account-box">
+    <p class="account-side-title">신부측 계좌번호</p>
+
+    <div class="account-row">
+      <div class="account-info">
+        <span class="account-person">노하나</span>
+        <span class="account-number">국민은행 000-00000-0000</span>
+      </div>
+      <button class="copy-btn" onclick="copyAccount('000-00000-0000', '노하나')" aria-label="계좌번호 복사">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+        </svg>
+      </button>
+    </div>
+
+    <div class="account-row">
+      <div class="account-info">
+        <span class="account-person">노군주</span>
+        <span class="account-number">국민은행 000-00000-0000</span>
+      </div>
+      <button class="copy-btn" onclick="copyAccount('000-00000-0000', '노군주')" aria-label="계좌번호 복사">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+        </svg>
+      </button>
+    </div>
+
+    <div class="account-row">
+      <div class="account-info">
+        <span class="account-person">김명애</span>
+        <span class="account-number">국민은행 000-00000-0000</span>
+      </div>
+      <button class="copy-btn" onclick="copyAccount('000-00000-0000', '김명애')" aria-label="계좌번호 복사">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ CLOSING QUOTE ═══════════════ -->
+<div class="closing">
+  <img class="closing-bg" src="images/closing.png" alt="마지막 사진">
+  <div class="closing-overlay"></div>
+  <div class="closing-text">
+    <p class="closing-quote">
+      당신은 내가 더 좋은 사람이고 싶게<br>
+      만들어요
+    </p>
+    <span class="closing-source">영화 '이보다 더 좋을 순 없다' 중</span>
+  </div>
+</div>
+
+<!-- ═══════════════ TOAST ═══════════════ -->
+<div class="toast" id="toast"></div>
+
+<script>
+  // 카운트다운
+  (function () {
+    const wedding = new Date('2026-10-17T12:30:00');
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const diff = Math.ceil((wedding - today) / (1000 * 60 * 60 * 24));
+    const el = document.getElementById('countdown-days');
+    if (el) el.textContent = diff > 0 ? diff : '오늘';
+  })();
+
+  // 계좌번호 복사
+  function copyAccount(number, name) {
+    const clean = number.replace(/\s/g, '');
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(clean).then(() => showToast(name + ' 계좌번호가 복사되었습니다'));
+    } else {
+      const ta = document.createElement('textarea');
+      ta.value = clean;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      showToast(name + ' 계좌번호가 복사되었습니다');
+    }
+  }
+
+  function showToast(msg) {
+    const toast = document.getElementById('toast');
+    toast.textContent = msg;
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 2000);
+  }
+</script>
+
+
+
+</body></html>
