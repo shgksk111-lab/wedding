@@ -527,6 +527,48 @@
       letter-spacing: 0.03em;
     }
 
+    /* ─── SCROLL ANIMATION ─── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ─── MUSIC BUTTON ─── */
+    .music-btn {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(42,37,32,0.85);
+      backdrop-filter: blur(8px);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+    }
+
+    .music-btn svg {
+      width: 18px;
+      height: 18px;
+      fill: #fff;
+    }
+
+    .music-btn.playing .music-icon-pause { display: block; }
+    .music-btn.playing .music-icon-play  { display: none; }
+    .music-btn:not(.playing) .music-icon-pause { display: none; }
+    .music-btn:not(.playing) .music-icon-play  { display: block; }
+
     /* ─── TOAST ─── */
     .toast {
       position: fixed;
@@ -576,16 +618,16 @@
   <span class="section-num">01</span>
   <span class="section-title">INVITATION</span>
 
-  <p class="invitation-text">
+  <p class="invitation-text fade-up">
     서로 마주보며 키워온 사랑으로<br>
     이제는 한 곳을 바라보며 걸어가려합니다.<br>
     아름다운 가을날 저희의 새로운 첫걸음을<br>
     축복해주시면 더없는 행복으로 간직하겠습니다
   </p>
 
-  <p class="invitation-sig">김진영·노하나 올림</p>
+  <p class="invitation-sig fade-up">김진영·노하나 올림</p>
 
-  <img class="invitation-photo" src="images/invitation.jpg" alt="커플 사진" />
+  <img class="invitation-photo fade-up" src="images/invitation.jpg" alt="커플 사진" />
 </section>
 
 <!-- ═══════════════ 02 DATE & VENUE ═══════════════ -->
@@ -593,15 +635,15 @@
   <span class="section-num">02</span>
   <span class="section-title">DATE &amp; VENUE</span>
 
-  <div class="countdown-box">
+  <div class="countdown-box fade-up">
     진영 하나 결혼식이 <strong id="countdown-days">D-??</strong>일 남았습니다
   </div>
 
   <div class="venue-divider"></div>
 
-  <p class="venue-date">2026. 10. 17 SAT PM 12:30</p>
-  <p class="venue-name">이룸웨딩컨벤션</p>
-  <p class="venue-address">
+  <p class="venue-date fade-up">2026. 10. 17 SAT PM 12:30</p>
+  <p class="venue-name fade-up">이룸웨딩컨벤션</p>
+  <p class="venue-address fade-up">
     서울시 마포구 마포대로 78 경찰공제회 5층<br>
     02-714-2121
   </p>
@@ -612,7 +654,7 @@
   <span class="section-num">03</span>
   <span class="section-title">FAMILY</span>
 
-  <div class="family-member">
+  <div class="family-member fade-up">
     <img class="family-photo" src="images/groom.jpg" alt="신랑 사진" />
     <div class="family-info">
       <p class="family-parents">아버지 김만석 · 어머니 이광윤</p>
@@ -620,7 +662,7 @@
     </div>
   </div>
 
-  <div class="family-member">
+  <div class="family-member fade-up">
     <img class="family-photo" src="images/bride.jpg" alt="신부 사진" />
     <div class="family-info">
       <p class="family-parents">아버지 노군주 · 어머니 김명애</p>
@@ -641,20 +683,20 @@
 
   <div class="map-container">
     <iframe
-      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3163.8!2d126.9513!3d37.5443!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357c98c2!2z7J207Iuc7JW866GcIOuniOyduO2ajA!5e0!3m2!1sko!2skr!4v1"
+      src="https://map.kakao.com/link/embed/?q=%EC%9D%B4%EB%A3%B8%EC%9B%A8%EB%94%A9%EC%BB%A8%EB%B2%A4%EC%85%98&type=road"
+      style="width:100%;height:100%;border:none;"
       allowfullscreen=""
       loading="lazy"
-      referrerpolicy="no-referrer-when-downgrade"
       title="이룸웨딩컨벤션 지도">
     </iframe>
   </div>
 
   <a
     class="btn-dark"
-    href="https://map.kakao.com/link/search/서울시 마포구 마포대로 78 경찰공제회"
+    href="https://map.kakao.com/link/search/이룸웨딩컨벤션"
     target="_blank"
     rel="noopener noreferrer">
-    지도 앱에서 보기
+    카카오맵으로 보기
   </a>
 
   <div class="transport-section">
@@ -741,7 +783,7 @@
     양해 부탁드립니다.
   </p>
 
-  <div class="account-box">
+  <div class="account-box fade-up">
     <p class="account-side-title">신랑측 계좌번호</p>
 
     <div class="account-row">
@@ -784,7 +826,7 @@
     </div>
   </div>
 
-  <div class="account-box">
+  <div class="account-box fade-up">
     <p class="account-side-title">신부측 계좌번호</p>
 
     <div class="account-row">
@@ -841,10 +883,46 @@
   </div>
 </div>
 
+<!-- ═══════════════ MUSIC BUTTON ═══════════════ -->
+<audio id="bgm" loop>
+  <source src="images/bgm.mp3" type="audio/mpeg" />
+</audio>
+
+<button class="music-btn" id="musicBtn" aria-label="음악 재생/정지">
+  <svg class="music-icon-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+  <svg class="music-icon-pause" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+</button>
+
 <!-- ═══════════════ TOAST ═══════════════ -->
 <div class="toast" id="toast"></div>
 
 <script>
+  // 스크롤 페이드인 애니메이션
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(el => {
+      if (el.isIntersecting) {
+        el.target.classList.add('visible');
+        observer.unobserve(el.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // 음악 버튼
+  const bgm = document.getElementById('bgm');
+  const musicBtn = document.getElementById('musicBtn');
+
+  musicBtn.addEventListener('click', () => {
+    if (bgm.paused) {
+      bgm.play();
+      musicBtn.classList.add('playing');
+    } else {
+      bgm.pause();
+      musicBtn.classList.remove('playing');
+    }
+  });
+
   // 카운트다운
   (function () {
     const wedding = new Date('2026-10-17T12:30:00');
