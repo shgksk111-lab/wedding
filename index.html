@@ -33,6 +33,19 @@
       max-width: 430px;
       margin: 0 auto;
       overflow-x: hidden;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+
+    img {
+      -webkit-user-select: none;
+      user-select: none;
+      -webkit-touch-callout: none;
+      pointer-events: none;
+    }
+
+    .gallery-item, .lightbox img {
+      pointer-events: auto;
     }
 
     /* ─── COVER ─── */
@@ -387,6 +400,14 @@
       aspect-ratio: 1/1;
       background: var(--bg-warm);
       overflow: hidden;
+      opacity: 0;
+      transform: scale(0.92);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .gallery-item.visible {
+      opacity: 1;
+      transform: scale(1);
     }
 
     .gallery-item img {
@@ -394,6 +415,11 @@
       height: 100%;
       object-fit: cover;
       display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .gallery-item:active img {
+      transform: scale(0.97);
     }
 
     /* ─── ACCOUNT ─── */
@@ -740,13 +766,7 @@
     </iframe>
   </div>
 
-  <a
-    class="btn-dark"
-    href="https://map.kakao.com/link/search/이룸웨딩컨벤션"
-    target="_blank"
-    rel="noopener noreferrer">
-    카카오맵으로 보기
-  </a>
+  <button class="btn-dark" onclick="openKakaoMap()">카카오맵으로 보기</button>
 
   <div class="transport-section">
     <p class="transport-title">자가용</p>
@@ -959,6 +979,34 @@
     });
   }, { threshold: 0.15 });
   document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // 갤러리 스태거 애니메이션
+  const galleryObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        const items = entry.target.querySelectorAll('.gallery-item');
+        items.forEach((item, idx) => {
+          setTimeout(() => item.classList.add('visible'), idx * 80);
+        });
+        galleryObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.05 });
+  const galleryGrid = document.querySelector('.gallery-grid');
+  if (galleryGrid) galleryObserver.observe(galleryGrid);
+
+  // 카카오맵 열기
+  function openKakaoMap() {
+    const url = 'https://map.kakao.com/link/map/이룸웨딩컨벤션,37.5443,126.9511';
+    const win = window.open(url, '_blank');
+    if (!win || win.closed) window.location.href = url;
+  }
+
+  // 이미지 보호 강화
+  document.addEventListener('contextmenu', e => e.preventDefault());
+  document.addEventListener('dragstart', e => e.preventDefault());
+  document.addEventListener('selectstart', e => e.preventDefault());
+  document.addEventListener('copy', e => e.preventDefault());
 
   // 음악 자동재생 (첫 터치/클릭 시 재생)
   const bgm = document.getElementById('bgm');
