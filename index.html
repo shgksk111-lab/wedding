@@ -569,6 +569,56 @@
     .music-btn:not(.playing) .music-icon-pause { display: none; }
     .music-btn:not(.playing) .music-icon-play  { display: block; }
 
+    /* ─── LIGHTBOX ─── */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.92);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9998;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+
+    .lightbox.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .lightbox img {
+      max-width: 95vw;
+      max-height: 90vh;
+      object-fit: contain;
+      border-radius: 2px;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 16px;
+      right: 20px;
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.8);
+      font-size: 36px;
+      line-height: 1;
+      cursor: pointer;
+      padding: 4px 8px;
+    }
+
+    /* ─── 이미지 보호 ─── */
+    img {
+      -webkit-user-select: none;
+      user-select: none;
+      -webkit-touch-callout: none;
+    }
+
+    .gallery-item {
+      cursor: pointer;
+    }
+
     /* ─── TOAST ─── */
     .toast {
       position: fixed;
@@ -683,9 +733,8 @@
 
   <div class="map-container">
     <iframe
-      src="https://map.kakao.com/link/embed/?q=%EC%9D%B4%EB%A3%B8%EC%9B%A8%EB%94%A9%EC%BB%A8%EB%B2%A4%EC%85%98&type=road"
+      src="https://www.openstreetmap.org/export/embed.html?bbox=126.9475%2C37.5428%2C126.9548%2C37.5460&layer=mapnik&marker=37.5443%2C126.9511"
       style="width:100%;height:100%;border:none;"
-      allowfullscreen=""
       loading="lazy"
       title="이룸웨딩컨벤션 지도">
     </iframe>
@@ -755,20 +804,20 @@
   <span class="section-title">GALLERY</span>
 
   <div class="gallery-grid">
-    <div class="gallery-item"><img src="images/gallery1.jpg" alt="갤러리 1" /></div>
-    <div class="gallery-item"><img src="images/gallery2.jpg" alt="갤러리 2" /></div>
-    <div class="gallery-item"><img src="images/gallery3.jpg" alt="갤러리 3" /></div>
-    <div class="gallery-item"><img src="images/gallery4.jpg" alt="갤러리 4" /></div>
-    <div class="gallery-item"><img src="images/gallery5.jpg" alt="갤러리 5" /></div>
-    <div class="gallery-item"><img src="images/gallery6.jpg" alt="갤러리 6" /></div>
-    <div class="gallery-item"><img src="images/gallery7.jpg" alt="갤러리 7" /></div>
-    <div class="gallery-item"><img src="images/gallery8.jpg" alt="갤러리 8" /></div>
-    <div class="gallery-item"><img src="images/gallery9.jpg" alt="갤러리 9" /></div>
-    <div class="gallery-item"><img src="images/gallery10.jpg" alt="갤러리 10" /></div>
-    <div class="gallery-item"><img src="images/gallery11.jpg" alt="갤러리 11" /></div>
-    <div class="gallery-item"><img src="images/gallery12.jpg" alt="갤러리 12" /></div>
-    <div class="gallery-item"><img src="images/gallery13.jpg" alt="갤러리 13" /></div>
-    <div class="gallery-item"><img src="images/gallery14.jpg" alt="갤러리 14" /></div>
+    <div class="gallery-item" onclick="openLightbox('images/gallery1.jpg')"><img src="images/gallery1.jpg" alt="갤러리 1" /></div>
+    <div class="gallery-item" onclick="openLightbox('images/gallery2.jpg')"><img src="images/gallery2.jpg" alt="갤러리 2" /></div>
+    <div class="gallery-item" onclick="openLightbox('images/gallery3.jpg')"><img src="images/gallery3.jpg" alt="갤러리 3" /></div>
+    <div class="gallery-item" onclick="openLightbox('images/gallery4.jpg')"><img src="images/gallery4.jpg" alt="갤러리 4" /></div>
+    <div class="gallery-item" onclick="openLightbox('images/gallery5.jpg')"><img src="images/gallery5.jpg" alt="갤러리 5" /></div>
+    <div class="gallery-item" onclick="openLightbox('images/gallery6.jpg')"><img src="images/gallery6.jpg" alt="갤러리 6" /></div>
+    <div class="gallery-item" onclick="openLightbox('images/gallery7.jpg')"><img src="images/gallery7.jpg" alt="갤러리 7" /></div>
+    <div class="gallery-item" onclick="openLightbox('images/gallery8.jpg')"><img src="images/gallery8.jpg" alt="갤러리 8" /></div>
+    <div class="gallery-item" onclick="openLightbox('images/gallery9.jpg')"><img src="images/gallery9.jpg" alt="갤러리 9" /></div>
+    <div class="gallery-item" onclick="openLightbox('images/gallery10.jpg')"><img src="images/gallery10.jpg" alt="갤러리 10" /></div>
+    <div class="gallery-item" onclick="openLightbox('images/gallery11.jpg')"><img src="images/gallery11.jpg" alt="갤러리 11" /></div>
+    <div class="gallery-item" onclick="openLightbox('images/gallery12.jpg')"><img src="images/gallery12.jpg" alt="갤러리 12" /></div>
+    <div class="gallery-item" onclick="openLightbox('images/gallery13.jpg')"><img src="images/gallery13.jpg" alt="갤러리 13" /></div>
+    <div class="gallery-item" onclick="openLightbox('images/gallery14.jpg')"><img src="images/gallery14.jpg" alt="갤러리 14" /></div>
   </div>
 </section>
 
@@ -883,12 +932,18 @@
   </div>
 </div>
 
+<!-- ═══════════════ LIGHTBOX ═══════════════ -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()">×</button>
+  <img id="lightbox-img" src="" alt="크게 보기" onclick="event.stopPropagation()" />
+</div>
+
 <!-- ═══════════════ MUSIC BUTTON ═══════════════ -->
 <audio id="bgm" loop>
   <source src="images/bgm_compressed.m4a" type="audio/mp4" />
 </audio>
 
-<button class="music-btn" id="musicBtn" aria-label="음악 재생/정지">
+<button class="music-btn playing" id="musicBtn" aria-label="음악 재생/정지">
   <svg class="music-icon-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
   <svg class="music-icon-pause" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
 </button>
@@ -897,31 +952,61 @@
 <div class="toast" id="toast"></div>
 
 <script>
-  // 스크롤 페이드인 애니메이션
+  // 스크롤 페이드인
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(el => {
-      if (el.isIntersecting) {
-        el.target.classList.add('visible');
-        observer.unobserve(el.target);
-      }
+      if (el.isIntersecting) { el.target.classList.add('visible'); observer.unobserve(el.target); }
     });
   }, { threshold: 0.15 });
-
   document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
-  // 음악 버튼
+  // 음악 자동재생 (첫 터치/클릭 시 재생)
   const bgm = document.getElementById('bgm');
   const musicBtn = document.getElementById('musicBtn');
+  bgm.volume = 0.6;
 
-  musicBtn.addEventListener('click', () => {
-    if (bgm.paused) {
-      bgm.play();
+  function startBgm() {
+    bgm.play().then(() => {
       musicBtn.classList.add('playing');
+    }).catch(() => {});
+    document.removeEventListener('touchstart', startBgm);
+    document.removeEventListener('click', startBgm);
+  }
+
+  const autoplay = bgm.play();
+  if (autoplay !== undefined) {
+    autoplay.then(() => {
+      musicBtn.classList.add('playing');
+    }).catch(() => {
+      document.addEventListener('touchstart', startBgm, { once: true });
+      document.addEventListener('click', startBgm, { once: true });
+    });
+  }
+
+  musicBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (bgm.paused) {
+      bgm.play(); musicBtn.classList.add('playing');
     } else {
-      bgm.pause();
-      musicBtn.classList.remove('playing');
+      bgm.pause(); musicBtn.classList.remove('playing');
     }
   });
+
+  // 라이트박스
+  function openLightbox(src) {
+    document.getElementById('lightbox-img').src = src;
+    document.getElementById('lightbox').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+  // 이미지 우클릭/드래그 방지
+  document.addEventListener('contextmenu', e => { if (e.target.tagName === 'IMG') e.preventDefault(); });
+  document.addEventListener('dragstart', e => { if (e.target.tagName === 'IMG') e.preventDefault(); });
 
   // 카운트다운
   (function () {
