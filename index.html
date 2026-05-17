@@ -993,7 +993,7 @@
     const today = new Date();
     today.setHours(0, 0, 0, 0);
     wedding.setHours(0, 0, 0, 0);
-    const diff = Math.round((wedding - today) / (1000 * 60 * 60 * 24)) - 1;
+    const diff = Math.round((wedding - today) / (1000 * 60 * 60 * 24));
     const el = document.getElementById('countdown-days');
     if (!el) return;
     if (diff > 0) {
