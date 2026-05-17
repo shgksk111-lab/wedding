@@ -151,11 +151,11 @@
       display: block;
       text-align: center;
       font-family: 'Pretendard', sans-serif;
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 0.28em;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
       color: var(--text);
-      margin-bottom: 64px;
+      margin-bottom: 44px;
     }
 
     /* ─── INVITATION ─── */
@@ -191,9 +191,9 @@
     #date-venue { padding: 100px 28px 120px; }
 
     .countdown-box {
-      background: #ffffff;
-      border-radius: 10px;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      background: #fff;
+      border: 1px solid #e0dbd4;
+      border-radius: 8px;
       padding: 20px 24px;
       text-align: center;
       font-size: 14px;
@@ -401,9 +401,8 @@
     }
 
     .account-box {
-      background: #ffffff;
-      border-radius: 10px;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      background: var(--bg-warm);
+      border-radius: 6px;
       padding: 28px 24px;
       margin-bottom: 12px;
     }
@@ -473,9 +472,6 @@
       height: 100svh;
       min-height: 500px;
       overflow: hidden;
-      display: flex;
-      align-items: flex-start;
-      justify-content: center;
     }
 
     .closing-bg {
@@ -494,9 +490,12 @@
     }
 
     .closing-text {
-      position: relative;
+      position: absolute;
+      top: 72px;
+      left: 0;
+      right: 0;
       text-align: center;
-      padding: 80px 44px 0;
+      padding: 0 44px;
     }
 
     .closing-quote {
@@ -929,9 +928,9 @@
 
   // 네이버맵 열기
   function openNaverMap() {
-    const url = 'https://map.naver.com/v5/search/이룸웨딩컨벤션';
-    const win = window.open(url, '_blank');
-    if (!win || win.closed) window.location.href = url;
+    const webUrl = 'https://map.naver.com/v5/search/%EC%9D%B4%EB%A3%B8%EC%9B%A8%EB%94%A9%EC%BB%A8%EB%B2%A4%EC%85%98';
+    const win = window.open(webUrl, '_blank');
+    if (!win || win.closed) window.location.href = webUrl;
   }
 
   // 이미지 보호 강화
@@ -990,11 +989,11 @@
 
   // 카운트다운 (당일 제외, 전날 = 1일)
   (function () {
-    const wedding = new Date('2026-10-17');
+    const wedding = new Date(2026, 9, 17); // 로컬 타임존 기준 (UTC 파싱 오차 방지)
     const today = new Date();
     today.setHours(0, 0, 0, 0);
     wedding.setHours(0, 0, 0, 0);
-    const diff = Math.round((wedding - today) / (1000 * 60 * 60 * 24));
+    const diff = Math.round((wedding - today) / (1000 * 60 * 60 * 24)) - 1;
     const el = document.getElementById('countdown-days');
     if (!el) return;
     if (diff > 0) {
