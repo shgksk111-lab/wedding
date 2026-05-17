@@ -21,7 +21,7 @@
       --divider:    #dbd5cc;
       --btn-bg:     #3f3a36;
       --btn-text:   #f5f1eb;
-      --box-bg:     #e8e3dc;
+      --box-bg:     #ffffff;
     }
 
     html { scroll-behavior: smooth; }
@@ -191,7 +191,9 @@
     #date-venue { padding: 100px 28px 120px; }
 
     .countdown-box {
-      border: 1px solid var(--divider);
+      background: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
       padding: 20px 24px;
       text-align: center;
       font-size: 14px;
@@ -215,18 +217,18 @@
 
     .venue-date {
       text-align: center;
-      font-size: 13px;
+      font-size: 14px;
       font-weight: 300;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.04em;
       color: var(--text-light);
-      margin-bottom: 12px;
+      margin-bottom: 8px;
     }
 
     .venue-name {
       text-align: center;
-      font-size: 22px;
+      font-size: 16px;
       font-weight: 600;
-      letter-spacing: -0.03em;
+      letter-spacing: -0.02em;
       color: var(--text);
       margin-bottom: 16px;
     }
@@ -351,41 +353,6 @@
       margin: 32px auto;
     }
 
-    /* ─── INFORMATION ─── */
-    #information { padding: 100px 28px 120px; }
-
-    .info-title {
-      text-align: center;
-      font-size: 15px;
-      font-weight: 600;
-      letter-spacing: -0.02em;
-      color: var(--text);
-      margin-bottom: 28px;
-    }
-
-    .info-row {
-      text-align: center;
-      font-size: 13px;
-      font-weight: 300;
-      line-height: 2.3;
-      color: var(--text-light);
-    }
-
-    .info-row strong {
-      font-weight: 500;
-      color: var(--text);
-    }
-
-    .info-note {
-      text-align: center;
-      font-size: 11px;
-      font-weight: 300;
-      color: var(--text-muted);
-      margin-top: 16px;
-      margin-bottom: 44px;
-      letter-spacing: 0.01em;
-    }
-
     /* ─── GALLERY ─── */
     .gallery-grid {
       display: grid;
@@ -434,8 +401,9 @@
     }
 
     .account-box {
-      background: var(--box-bg);
-      border-radius: 0;
+      background: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
       padding: 28px 24px;
       margin-bottom: 12px;
     }
@@ -506,7 +474,7 @@
       min-height: 500px;
       overflow: hidden;
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: center;
     }
 
@@ -522,13 +490,13 @@
     .closing-overlay {
       position: absolute;
       inset: 0;
-      background: rgba(0,0,0,0.28);
+      background: rgba(0,0,0,0.22);
     }
 
     .closing-text {
       position: relative;
       text-align: center;
-      padding: 0 44px;
+      padding: 80px 44px 0;
     }
 
     .closing-quote {
@@ -707,7 +675,7 @@
   <span class="section-title">DATE &amp; VENUE</span>
 
   <div class="countdown-box fade-up">
-    진영 하나 결혼식이 <strong id="countdown-days">D-??</strong>일 남았습니다
+    진영 하나 결혼식이 <strong id="countdown-days">?</strong>일 남았습니다
   </div>
 
   <div class="venue-divider"></div>
@@ -761,7 +729,7 @@
     </iframe>
   </div>
 
-  <button class="btn-dark" onclick="openKakaoMap()">카카오맵으로 보기</button>
+  <button class="btn-dark" onclick="openNaverMap()">네이버 맵으로 보기</button>
 
   <div class="transport-section">
     <p class="transport-title">자가용</p>
@@ -795,27 +763,9 @@
   </div>
 </section>
 
-<!-- ═══════════════ 05 INFORMATION ═══════════════ -->
-<section id="information">
-  <span class="section-num">05</span>
-  <span class="section-title">INFORMATION</span>
-
-  <p class="info-title">전세버스 운행 안내</p>
-
-  <p class="info-row"><strong>출발 시간</strong> : 오전 00시 00분 출발</p>
-  <p class="info-row"><strong>탑승 및 하차 장소</strong> : ○○구 ○○역 O번 출구 앞</p>
-  <p class="info-row"><strong>차량 번호</strong> : ○○○○○호</p>
-  <p class="info-row"><strong>인솔자 연락처</strong> : 홍길동 (010-XXXX-YYYY)</p>
-  <p class="info-note">※ 당일 문의는 인솔자에게 연락 부탁드립니다.</p>
-
-  <a class="btn-dark" href="#" onclick="alert('탑승의사를 전달해주세요.'); return false;">
-    탑승의사 전달하기
-  </a>
-</section>
-
-<!-- ═══════════════ 06 GALLERY ═══════════════ -->
+<!-- ═══════════════ 05 GALLERY ═══════════════ -->
 <section id="gallery" style="padding-left:0;padding-right:0;padding-bottom:0;">
-  <span class="section-num" style="display:block;padding:0 28px;">06</span>
+  <span class="section-num" style="display:block;padding:0 28px;">05</span>
   <span class="section-title" style="padding:0 28px;">GALLERY</span>
 
   <div class="gallery-grid">
@@ -836,9 +786,9 @@
   </div>
 </section>
 
-<!-- ═══════════════ 07 ACCOUNT ═══════════════ -->
+<!-- ═══════════════ 06 ACCOUNT ═══════════════ -->
 <section id="account">
-  <span class="section-num">07</span>
+  <span class="section-num">06</span>
   <span class="section-title">ACCOUNT</span>
 
   <p class="account-desc">
@@ -853,9 +803,9 @@
     <div class="account-row">
       <div class="account-info">
         <span class="account-person">김진영</span>
-        <span class="account-number">국민은행 000-00000-0000</span>
+        <span class="account-number">국민은행 517-102-01-394253</span>
       </div>
-      <button class="copy-btn" onclick="copyAccount('000-00000-0000', '김진영')" aria-label="계좌번호 복사">
+      <button class="copy-btn" onclick="copyAccount('517-102-01-394253', '김진영')" aria-label="계좌번호 복사">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
           <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
           <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
@@ -866,9 +816,9 @@
     <div class="account-row">
       <div class="account-info">
         <span class="account-person">김만석</span>
-        <span class="account-number">국민은행 000-00000-0000</span>
+        <span class="account-number">국민은행 802-24-0211-950</span>
       </div>
-      <button class="copy-btn" onclick="copyAccount('000-00000-0000', '김만석')" aria-label="계좌번호 복사">
+      <button class="copy-btn" onclick="copyAccount('802-24-0211-950', '김만석')" aria-label="계좌번호 복사">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
           <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
           <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
@@ -879,9 +829,9 @@
     <div class="account-row">
       <div class="account-info">
         <span class="account-person">이광윤</span>
-        <span class="account-number">국민은행 000-00000-0000</span>
+        <span class="account-number">국민은행 165-21-0272-344</span>
       </div>
-      <button class="copy-btn" onclick="copyAccount('000-00000-0000', '이광윤')" aria-label="계좌번호 복사">
+      <button class="copy-btn" onclick="copyAccount('165-21-0272-344', '이광윤')" aria-label="계좌번호 복사">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
           <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
           <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
@@ -896,22 +846,9 @@
     <div class="account-row">
       <div class="account-info">
         <span class="account-person">노하나</span>
-        <span class="account-number">국민은행 000-00000-0000</span>
+        <span class="account-number">국민은행 94177218362</span>
       </div>
-      <button class="copy-btn" onclick="copyAccount('000-00000-0000', '노하나')" aria-label="계좌번호 복사">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-        </svg>
-      </button>
-    </div>
-
-    <div class="account-row">
-      <div class="account-info">
-        <span class="account-person">노군주</span>
-        <span class="account-number">국민은행 000-00000-0000</span>
-      </div>
-      <button class="copy-btn" onclick="copyAccount('000-00000-0000', '노군주')" aria-label="계좌번호 복사">
+      <button class="copy-btn" onclick="copyAccount('94177218362', '노하나')" aria-label="계좌번호 복사">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
           <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
           <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
@@ -922,9 +859,9 @@
     <div class="account-row">
       <div class="account-info">
         <span class="account-person">김명애</span>
-        <span class="account-number">국민은행 000-00000-0000</span>
+        <span class="account-number">농협 351-0788-1512-43</span>
       </div>
-      <button class="copy-btn" onclick="copyAccount('000-00000-0000', '김명애')" aria-label="계좌번호 복사">
+      <button class="copy-btn" onclick="copyAccount('351-0788-1512-43', '김명애')" aria-label="계좌번호 복사">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
           <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
           <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
@@ -990,9 +927,9 @@
   const galleryGrid = document.querySelector('.gallery-grid');
   if (galleryGrid) galleryObserver.observe(galleryGrid);
 
-  // 카카오맵 열기
-  function openKakaoMap() {
-    const url = 'https://map.kakao.com/link/map/이룸웨딩컨벤션,37.5443,126.9511';
+  // 네이버맵 열기
+  function openNaverMap() {
+    const url = 'https://map.naver.com/v5/search/이룸웨딩컨벤션';
     const win = window.open(url, '_blank');
     if (!win || win.closed) window.location.href = url;
   }
@@ -1051,14 +988,20 @@
   document.addEventListener('contextmenu', e => { if (e.target.tagName === 'IMG') e.preventDefault(); });
   document.addEventListener('dragstart', e => { if (e.target.tagName === 'IMG') e.preventDefault(); });
 
-  // 카운트다운
+  // 카운트다운 (당일 제외, 전날 = 1일)
   (function () {
-    const wedding = new Date('2026-10-17T12:30:00');
+    const wedding = new Date('2026-10-17');
     const today = new Date();
     today.setHours(0, 0, 0, 0);
-    const diff = Math.ceil((wedding - today) / (1000 * 60 * 60 * 24));
+    wedding.setHours(0, 0, 0, 0);
+    const diff = Math.round((wedding - today) / (1000 * 60 * 60 * 24));
     const el = document.getElementById('countdown-days');
-    if (el) el.textContent = diff > 0 ? diff : '오늘';
+    if (!el) return;
+    if (diff > 0) {
+      el.textContent = diff;
+    } else {
+      el.closest('.countdown-box').innerHTML = '오늘 진영 하나의 결혼식입니다 ♡';
+    }
   })();
 
   // 계좌번호 복사
