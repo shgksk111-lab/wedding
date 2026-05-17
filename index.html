@@ -6,28 +6,28 @@
   <title>Jinyoung & Hana 결혼합니다</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <link href="https://cdn.jsdelivr.net/npm/@sunn-us/suit@1.0.0/fonts/suit-variable.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: #EDE8DF;
-      --bg-warm: #E8E2D9;
-      --text: #2A2520;
-      --text-muted: #9A9490;
-      --text-light: #7A7470;
-      --divider: #C8C2BA;
-      --btn-bg: #2A2520;
-      --btn-text: #F5F0E8;
-      --white: #FFFFFF;
-      --box-bg: #F7F3EE;
+      --bg:         #f5f1eb;
+      --bg-warm:    #ede9e2;
+      --text:       #2e2a26;
+      --text-sub:   #4a4641;
+      --text-muted: #c7c0b7;
+      --text-light: #857f79;
+      --divider:    #dbd5cc;
+      --btn-bg:     #3f3a36;
+      --btn-text:   #f5f1eb;
+      --box-bg:     #e8e3dc;
     }
 
     html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'SUIT', sans-serif;
+      font-family: 'Pretendard', -apple-system, sans-serif;
       background: var(--bg);
       color: var(--text);
       max-width: 430px;
@@ -35,6 +35,7 @@
       overflow-x: hidden;
       -webkit-user-select: none;
       user-select: none;
+      letter-spacing: -0.02em;
     }
 
     img {
@@ -59,7 +60,7 @@
       flex-direction: column;
       align-items: center;
       justify-content: space-between;
-      padding: 60px 20px 56px;
+      padding: 72px 24px 68px;
     }
 
     .cover-bg {
@@ -76,10 +77,10 @@
       inset: 0;
       background: linear-gradient(
         to bottom,
-        rgba(0,0,0,0.15) 0%,
-        rgba(0,0,0,0.02) 40%,
-        rgba(0,0,0,0.05) 60%,
-        rgba(0,0,0,0.25) 100%
+        rgba(0,0,0,0.10) 0%,
+        rgba(0,0,0,0.00) 35%,
+        rgba(0,0,0,0.04) 65%,
+        rgba(0,0,0,0.32) 100%
       );
     }
 
@@ -89,21 +90,21 @@
     }
 
     .cover-sub {
-      font-family: 'SUIT', sans-serif;
-      font-size: 11px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 10px;
       font-weight: 300;
-      letter-spacing: 0.3em;
-      color: rgba(255,255,255,0.82);
-      margin-bottom: 10px;
+      letter-spacing: 0.38em;
+      color: rgba(255,255,255,0.68);
+      margin-bottom: 14px;
     }
 
     .cover-title {
       font-family: 'Outfit', sans-serif;
       font-size: clamp(36px, 11vw, 52px);
-      font-weight: 400;
+      font-weight: 300;
       color: #fff;
       line-height: 1.1;
-      letter-spacing: 0.01em;
+      letter-spacing: 0.02em;
       white-space: nowrap;
     }
 
@@ -113,26 +114,26 @@
     }
 
     .cover-date {
-      font-family: 'SUIT', sans-serif;
-      font-size: 14px;
+      font-family: 'Pretendard', sans-serif;
+      font-size: 13px;
       font-weight: 300;
-      letter-spacing: 0.08em;
-      color: rgba(255,255,255,0.92);
-      margin-bottom: 6px;
+      letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.86);
+      margin-bottom: 7px;
     }
 
     .cover-names {
-      font-family: 'SUIT', sans-serif;
-      font-size: 13px;
+      font-family: 'Pretendard', sans-serif;
+      font-size: 12px;
       font-weight: 300;
-      letter-spacing: 0.12em;
-      color: rgba(255,255,255,0.85);
+      letter-spacing: 0.16em;
+      color: rgba(255,255,255,0.74);
     }
 
-    /* ─── SHARED SECTION STYLES ─── */
+    /* ─── SHARED SECTION ─── */
     section {
       background: var(--bg);
-      padding: 60px 28px;
+      padding: 120px 28px;
     }
 
     .section-num {
@@ -140,109 +141,109 @@
       text-align: center;
       font-family: 'Outfit', sans-serif;
       font-size: 11px;
-      font-weight: 400;
-      letter-spacing: 0.25em;
-      color: var(--text-muted);
+      font-weight: 300;
+      letter-spacing: 0.22em;
+      color: #c7c0b7;
       margin-bottom: 6px;
     }
 
     .section-title {
       display: block;
       text-align: center;
-      font-family: 'SUIT', sans-serif;
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 0.22em;
+      font-family: 'Pretendard', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.28em;
       color: var(--text);
-      margin-bottom: 44px;
+      margin-bottom: 64px;
     }
 
     /* ─── INVITATION ─── */
+    #invitation { padding: 100px 28px 0; }
+
     .invitation-text {
       text-align: center;
-      font-family: 'SUIT', sans-serif;
-      font-size: 13.5px;
+      font-size: 15px;
       font-weight: 300;
-      line-height: 2.0;
-      color: var(--text);
-      margin-bottom: 32px;
+      line-height: 2.3;
+      color: var(--text-sub);
+      margin-bottom: 44px;
       word-break: keep-all;
     }
 
     .invitation-sig {
       text-align: center;
-      font-family: 'SUIT', sans-serif;
       font-size: 14px;
-      font-weight: 600;
+      font-weight: 400;
       letter-spacing: 0.04em;
       color: var(--text);
-      margin-bottom: 48px;
+      margin-bottom: 60px;
     }
 
     .invitation-photo {
       width: 100%;
-      aspect-ratio: 16/10;
+      aspect-ratio: 3/4;
       object-fit: cover;
       display: block;
-      background: var(--divider);
     }
 
     /* ─── DATE & VENUE ─── */
+    #date-venue { padding: 100px 28px 120px; }
+
     .countdown-box {
       border: 1px solid var(--divider);
-      border-radius: 4px;
-      padding: 16px 20px;
+      padding: 20px 24px;
       text-align: center;
-      font-family: 'SUIT', sans-serif;
       font-size: 14px;
-      font-weight: 400;
+      font-weight: 300;
       color: var(--text);
-      margin-bottom: 28px;
-      letter-spacing: 0.02em;
+      margin-bottom: 52px;
+      letter-spacing: -0.01em;
+      line-height: 1.8;
     }
 
     .countdown-box strong {
-      font-weight: 700;
+      font-weight: 600;
     }
 
     .venue-divider {
-      width: 20px;
-      height: 1px;
+      width: 1px;
+      height: 40px;
       background: var(--divider);
-      margin: 24px auto;
+      margin: 0 auto 48px;
     }
 
     .venue-date {
       text-align: center;
-      font-family: 'SUIT', sans-serif;
-      font-size: 16px;
-      font-weight: 500;
-      letter-spacing: 0.04em;
-      color: var(--text);
-      margin-bottom: 4px;
+      font-size: 13px;
+      font-weight: 300;
+      letter-spacing: 0.06em;
+      color: var(--text-light);
+      margin-bottom: 12px;
     }
 
     .venue-name {
       text-align: center;
-      font-family: 'SUIT', sans-serif;
-      font-size: 16px;
+      font-size: 22px;
       font-weight: 600;
+      letter-spacing: -0.03em;
       color: var(--text);
-      margin-bottom: 12px;
+      margin-bottom: 16px;
     }
 
     .venue-address {
       text-align: center;
-      font-family: 'SUIT', sans-serif;
-      font-size: 12.5px;
+      font-size: 13px;
       font-weight: 300;
-      line-height: 1.9;
+      line-height: 2.1;
       color: var(--text-light);
     }
 
     /* ─── FAMILY ─── */
+    #family { padding: 100px 28px 120px; }
+
     .family-member {
-      margin-bottom: 48px;
+      margin-bottom: 80px;
     }
 
     .family-member:last-child {
@@ -251,12 +252,11 @@
 
     .family-photo {
       width: 100%;
-      aspect-ratio: 1/1;
+      aspect-ratio: 3/4;
       object-fit: cover;
       object-position: center top;
       display: block;
-      margin-bottom: 20px;
-      background: var(--divider);
+      margin-bottom: 28px;
     }
 
     .family-info {
@@ -264,38 +264,37 @@
     }
 
     .family-parents {
-      font-family: 'SUIT', sans-serif;
       font-size: 13px;
       font-weight: 300;
-      letter-spacing: 0.05em;
-      color: var(--text);
-      margin-bottom: 4px;
+      letter-spacing: 0.02em;
+      color: var(--text-light);
+      margin-bottom: 7px;
     }
 
     .family-child {
-      font-family: 'SUIT', sans-serif;
-      font-size: 14px;
-      font-weight: 600;
+      font-size: 15px;
+      font-weight: 400;
       color: var(--text);
+      letter-spacing: -0.01em;
     }
 
     /* ─── LOCATION ─── */
+    #location { padding: 100px 28px 120px; }
+
     .location-address {
       text-align: center;
-      font-family: 'SUIT', sans-serif;
-      font-size: 12.5px;
+      font-size: 13px;
       font-weight: 300;
-      line-height: 1.9;
+      line-height: 2.1;
       color: var(--text-light);
-      margin-bottom: 24px;
+      margin-bottom: 36px;
     }
 
     .map-container {
       width: 100%;
       aspect-ratio: 4/3;
-      background: #D8D4CC;
-      border: 1px solid var(--divider);
-      margin-bottom: 12px;
+      background: #d5d0c8;
+      margin-bottom: 16px;
       overflow: hidden;
     }
 
@@ -306,71 +305,70 @@
     }
 
     .btn-dark {
-      display: block;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       width: 100%;
-      padding: 15px 0;
+      height: 58px;
       background: var(--btn-bg);
       color: var(--btn-text);
-      text-align: center;
-      font-family: 'SUIT', sans-serif;
-      font-size: 13px;
-      font-weight: 400;
-      letter-spacing: 0.08em;
+      font-family: 'Pretendard', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
       border: none;
+      border-radius: 0;
       cursor: pointer;
       text-decoration: none;
-      margin-bottom: 40px;
+      margin-bottom: 60px;
     }
 
     .transport-section {
-      margin-bottom: 28px;
+      margin-bottom: 32px;
     }
 
     .transport-title {
       text-align: center;
-      font-family: 'SUIT', sans-serif;
       font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 0.1em;
+      font-weight: 600;
+      letter-spacing: 0.04em;
       color: var(--text);
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
 
     .transport-detail {
       text-align: center;
-      font-family: 'SUIT', sans-serif;
-      font-size: 12px;
+      font-size: 13px;
       font-weight: 300;
-      line-height: 1.9;
+      line-height: 2.1;
       color: var(--text-light);
     }
 
     .transport-divider {
-      width: 20px;
-      height: 1px;
+      width: 1px;
+      height: 28px;
       background: var(--divider);
-      margin: 24px auto;
+      margin: 32px auto;
     }
 
     /* ─── INFORMATION ─── */
+    #information { padding: 100px 28px 120px; }
+
     .info-title {
       text-align: center;
-      font-family: 'SUIT', sans-serif;
-      font-size: 14px;
-      font-weight: 700;
-      letter-spacing: 0.06em;
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
       color: var(--text);
-      margin-bottom: 20px;
+      margin-bottom: 28px;
     }
 
     .info-row {
       text-align: center;
-      font-family: 'SUIT', sans-serif;
-      font-size: 12.5px;
+      font-size: 13px;
       font-weight: 300;
-      line-height: 2.0;
+      line-height: 2.3;
       color: var(--text-light);
-      margin-bottom: 4px;
     }
 
     .info-row strong {
@@ -380,28 +378,28 @@
 
     .info-note {
       text-align: center;
-      font-family: 'SUIT', sans-serif;
       font-size: 11px;
       font-weight: 300;
       color: var(--text-muted);
-      margin-top: 12px;
-      margin-bottom: 28px;
-      letter-spacing: 0.02em;
+      margin-top: 16px;
+      margin-bottom: 44px;
+      letter-spacing: 0.01em;
     }
 
     /* ─── GALLERY ─── */
     .gallery-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 4px;
+      gap: 6px;
     }
 
     .gallery-item {
       aspect-ratio: 1/1;
       background: var(--bg-warm);
       overflow: hidden;
+      cursor: pointer;
       opacity: 0;
-      transform: scale(0.92);
+      transform: scale(0.95);
       transition: opacity 0.6s ease, transform 0.6s ease;
     }
 
@@ -419,44 +417,44 @@
     }
 
     .gallery-item:active img {
-      transform: scale(0.97);
+      transform: scale(0.98);
     }
 
     /* ─── ACCOUNT ─── */
+    #account { padding: 100px 28px 120px; }
+
     .account-desc {
       text-align: center;
-      font-family: 'SUIT', sans-serif;
-      font-size: 13px;
+      font-size: 14px;
       font-weight: 300;
-      line-height: 1.9;
+      line-height: 2.1;
       color: var(--text-light);
-      margin-bottom: 32px;
+      margin-bottom: 40px;
       word-break: keep-all;
     }
 
     .account-box {
-      background: var(--white);
-      border-radius: 6px;
-      padding: 24px 20px;
-      margin-bottom: 14px;
+      background: var(--box-bg);
+      border-radius: 0;
+      padding: 28px 24px;
+      margin-bottom: 12px;
     }
 
     .account-side-title {
-      font-family: 'SUIT', sans-serif;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      color: var(--text);
-      padding-bottom: 14px;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      padding-bottom: 16px;
       border-bottom: 1px solid var(--divider);
-      margin-bottom: 16px;
+      margin-bottom: 20px;
     }
 
     .account-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 14px;
+      margin-bottom: 16px;
     }
 
     .account-row:last-child { margin-bottom: 0; }
@@ -464,22 +462,21 @@
     .account-info {
       display: flex;
       flex-direction: column;
-      gap: 2px;
+      gap: 3px;
     }
 
     .account-person {
-      font-family: 'SUIT', sans-serif;
-      font-size: 13px;
+      font-size: 14px;
       font-weight: 500;
       color: var(--text);
+      letter-spacing: -0.02em;
     }
 
     .account-number {
-      font-family: 'SUIT', sans-serif;
-      font-size: 11.5px;
+      font-size: 12px;
       font-weight: 300;
       color: var(--text-light);
-      letter-spacing: 0.03em;
+      letter-spacing: 0.01em;
     }
 
     .copy-btn {
@@ -501,7 +498,7 @@
       height: 16px;
     }
 
-    /* ─── QUOTE / CLOSING ─── */
+    /* ─── CLOSING ─── */
     .closing {
       position: relative;
       width: 100%;
@@ -531,33 +528,32 @@
     .closing-text {
       position: relative;
       text-align: center;
-      padding: 0 40px;
+      padding: 0 44px;
     }
 
     .closing-quote {
-      font-family: 'SUIT', sans-serif;
-      font-size: 15px;
+      font-size: 16px;
       font-weight: 300;
-      line-height: 2.0;
+      line-height: 2.3;
       color: rgba(255,255,255,0.92);
       word-break: keep-all;
+      letter-spacing: -0.01em;
     }
 
     .closing-source {
       display: block;
-      font-family: 'SUIT', sans-serif;
       font-size: 12px;
       font-weight: 300;
-      color: rgba(255,255,255,0.65);
-      margin-top: 20px;
+      color: rgba(255,255,255,0.52);
+      margin-top: 24px;
       letter-spacing: 0.03em;
     }
 
     /* ─── SCROLL ANIMATION ─── */
     .fade-up {
       opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
+      transform: translateY(24px);
+      transition: opacity 0.9s ease, transform 0.9s ease;
     }
 
     .fade-up.visible {
@@ -573,7 +569,7 @@
       width: 44px;
       height: 44px;
       border-radius: 50%;
-      background: rgba(42,37,32,0.85);
+      background: rgba(42,37,32,0.82);
       backdrop-filter: blur(8px);
       border: none;
       cursor: pointer;
@@ -581,7 +577,7 @@
       align-items: center;
       justify-content: center;
       z-index: 1000;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.12);
     }
 
     .music-btn svg {
@@ -599,7 +595,7 @@
     .lightbox {
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,0.92);
+      background: rgba(0,0,0,0.95);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -618,7 +614,6 @@
       max-width: 95vw;
       max-height: 90vh;
       object-fit: contain;
-      border-radius: 2px;
     }
 
     .lightbox-close {
@@ -627,7 +622,7 @@
       right: 20px;
       background: none;
       border: none;
-      color: rgba(255,255,255,0.8);
+      color: rgba(255,255,255,0.65);
       font-size: 36px;
       line-height: 1;
       cursor: pointer;
@@ -651,9 +646,9 @@
       bottom: 30px;
       left: 50%;
       transform: translateX(-50%) translateY(20px);
-      background: rgba(40,35,30,0.9);
+      background: rgba(40,35,30,0.88);
       color: #fff;
-      font-family: 'SUIT', sans-serif;
+      font-family: 'Pretendard', sans-serif;
       font-size: 12px;
       font-weight: 300;
       padding: 10px 20px;
@@ -820,8 +815,8 @@
 
 <!-- ═══════════════ 06 GALLERY ═══════════════ -->
 <section id="gallery" style="padding-left:0;padding-right:0;padding-bottom:0;">
-  <span class="section-num" style="display:block;padding-top:0;">06</span>
-  <span class="section-title">GALLERY</span>
+  <span class="section-num" style="display:block;padding:0 28px;">06</span>
+  <span class="section-title" style="padding:0 28px;">GALLERY</span>
 
   <div class="gallery-grid">
     <div class="gallery-item" onclick="openLightbox('images/gallery1.jpg')"><img src="images/gallery1.jpg" alt="갤러리 1" /></div>
