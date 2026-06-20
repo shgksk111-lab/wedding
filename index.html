@@ -8,6 +8,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css" rel="stylesheet" />
+  <!-- 카카오 맵: YOUR_KAKAO_KEY 자리에 JavaScript 키 입력 -->
+  <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=YOUR_KAKAO_KEY&onload=initKakaoMap"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -702,6 +704,8 @@
       max-width: 95vw;
       max-height: 90vh;
       object-fit: contain;
+      transition: opacity 0.2s;
+      display: block;
     }
 
     .lightbox-close {
@@ -715,6 +719,41 @@
       line-height: 1;
       cursor: pointer;
       padding: 4px 8px;
+    }
+
+    .lightbox-prev,
+    .lightbox-next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255,255,255,0.12);
+      border: none;
+      color: #fff;
+      font-size: 24px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+      z-index: 1;
+    }
+
+    .lightbox-prev { left: 16px; }
+    .lightbox-next { right: 16px; }
+    .lightbox-prev:hover, .lightbox-next:hover { background: rgba(255,255,255,0.25); }
+
+    .lightbox-counter {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255,255,255,0.55);
+      font-family: 'SUIT', sans-serif;
+      font-size: 13px;
+      letter-spacing: -0.02em;
     }
 
     /* ─── TOAST ─── */
@@ -884,12 +923,7 @@
   </p>
 
   <div class="map-container fade-up">
-    <iframe
-      src="https://www.openstreetmap.org/export/embed.html?bbox=126.9475%2C37.5428%2C126.9548%2C37.5460&layer=mapnik&marker=37.5443%2C126.9511"
-      style="width:100%;height:100%;border:none;"
-      loading="lazy"
-      title="이룸웨딩컨벤션 지도">
-    </iframe>
+    <div id="kakao-map" style="width:100%;height:100%;"></div>
   </div>
 
   <div class="map-btns fade-up">
@@ -1089,7 +1123,10 @@
 <!-- ═══════════════ LIGHTBOX ═══════════════ -->
 <div class="lightbox" id="lightbox" onclick="closeLightbox()">
   <button class="lightbox-close" onclick="closeLightbox()">×</button>
+  <button class="lightbox-prev" onclick="event.stopPropagation(); slideTo(currentIndex - 1)">&#8249;</button>
   <img id="lightbox-img" src="" alt="크게 보기" onclick="event.stopPropagation()" />
+  <button class="lightbox-next" onclick="event.stopPropagation(); slideTo(currentIndex + 1)">&#8250;</button>
+  <span class="lightbox-counter" id="lightbox-counter"></span>
 </div>
 
 <!-- ═══════════════ MUSIC BUTTON ═══════════════ -->
@@ -1165,17 +1202,54 @@
     else { bgm.pause(); musicBtn.classList.remove('playing'); }
   });
 
-  // 라이트박스
+  // 라이트박스 슬라이드
+  const galleryImages = Array.from(document.querySelectorAll('.gallery-item img')).map(img => img.src);
+  let currentIndex = 0;
+
   function openLightbox(src) {
-    document.getElementById('lightbox-img').src = src;
+    currentIndex = galleryImages.indexOf(src);
+    if (currentIndex === -1) currentIndex = 0;
+    showSlide(currentIndex);
     document.getElementById('lightbox').classList.add('active');
     document.body.style.overflow = 'hidden';
   }
+
+  function showSlide(idx) {
+    const img = document.getElementById('lightbox-img');
+    img.style.opacity = '0';
+    setTimeout(() => {
+      img.src = galleryImages[idx];
+      img.style.opacity = '1';
+    }, 150);
+    document.getElementById('lightbox-counter').textContent = (idx + 1) + ' / ' + galleryImages.length;
+  }
+
+  function slideTo(idx) {
+    currentIndex = (idx + galleryImages.length) % galleryImages.length;
+    showSlide(currentIndex);
+  }
+
   function closeLightbox() {
     document.getElementById('lightbox').classList.remove('active');
     document.body.style.overflow = '';
   }
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+  document.addEventListener('keydown', e => {
+    const lb = document.getElementById('lightbox');
+    if (!lb.classList.contains('active')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowRight') slideTo(currentIndex + 1);
+    if (e.key === 'ArrowLeft') slideTo(currentIndex - 1);
+  });
+
+  // 모바일 스와이프
+  let touchStartX = 0;
+  const lightboxEl = document.getElementById('lightbox');
+  lightboxEl.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+  lightboxEl.addEventListener('touchend', e => {
+    const diff = touchStartX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) slideTo(diff > 0 ? currentIndex + 1 : currentIndex - 1);
+  });
 
   // 카운트다운
   (function () {
@@ -1208,6 +1282,27 @@
       document.body.removeChild(ta);
       showToast(name + ' 계좌번호가 복사되었습니다');
     }
+  }
+
+  // 카카오 맵 초기화
+  function initKakaoMap() {
+    if (typeof kakao === 'undefined') return;
+    const container = document.getElementById('kakao-map');
+    const options = {
+      center: new kakao.maps.LatLng(37.54433, 126.95101),
+      level: 4
+    };
+    const map = new kakao.maps.Map(container, options);
+    const marker = new kakao.maps.Marker({
+      position: new kakao.maps.LatLng(37.54433, 126.95101),
+      map: map
+    });
+    const infowindow = new kakao.maps.InfoWindow({
+      content: '<div style="padding:6px 10px;font-size:13px;font-family:SUIT,sans-serif;white-space:nowrap;">이룸웨딩컨벤션</div>'
+    });
+    infowindow.open(map, marker);
+    map.setDraggable(false);
+    map.setZoomable(false);
   }
 
   function showToast(msg) {
