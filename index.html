@@ -932,11 +932,16 @@
   </p>
 
   <div class="map-container">
-    <div id="kakao-map" style="width:100%;height:300px;min-height:200px;"></div>
+    <iframe
+      src="https://maps.google.com/maps?q=37.54433,126.95101&z=16&output=embed&hl=ko"
+      style="width:100%;height:300px;border:none;"
+      allowfullscreen
+      loading="lazy">
+    </iframe>
   </div>
 
   <div class="map-btns fade-up">
-    <button class="map-btn kakao" onclick="openMap('https://map.kakao.com/?q=%EC%9D%B4%EB%A3%B8%EC%9B%A8%EB%94%A9%EC%BB%A8%EB%B2%A4%EC%85%98')">카카오맵</button>
+    <button class="map-btn kakao" onclick="openMap('https://map.kakao.com/link/map/이룸웨딩컨벤션,37.54433,126.95101')">카카오맵</button>
     <button class="map-btn naver" onclick="openMap('https://map.naver.com/v5/search/%EC%9D%B4%EB%A3%B8%EC%9B%A8%EB%94%A9%EC%BB%A8%EB%B2%A4%EC%85%98')">네이버지도</button>
   </div>
 
@@ -1259,28 +1264,7 @@
     }
   }
 
-  // 카카오 맵 초기화
-  function initKakaoMap() {
-    if (typeof kakao === 'undefined') return;
-    const container = document.getElementById('kakao-map');
-    const options = {
-      center: new kakao.maps.LatLng(37.54433, 126.95101),
-      level: 4
-    };
-    const map = new kakao.maps.Map(container, options);
-    const marker = new kakao.maps.Marker({
-      position: new kakao.maps.LatLng(37.54433, 126.95101),
-      map: map
-    });
-    const infowindow = new kakao.maps.InfoWindow({
-      content: '<div style="padding:6px 10px;font-size:13px;font-family:SUIT,sans-serif;white-space:nowrap;">이룸웨딩컨벤션</div>'
-    });
-    infowindow.open(map, marker);
-    map.setDraggable(false);
-    map.setZoomable(false);
-  }
-
-  function showToast(msg) {
+function showToast(msg) {
     const toast = document.getElementById('toast');
     toast.textContent = msg;
     toast.classList.add('show');
@@ -1288,6 +1272,5 @@
   }
 </script>
 
-  <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c091d57aa22781b6b462b97b89726130&onload=initKakaoMap"></script>
 </body>
 </html>
