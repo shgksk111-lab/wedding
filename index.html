@@ -738,7 +738,6 @@
       background: rgba(255,255,255,0.12);
       border: none;
       color: #fff;
-      font-size: 24px;
       width: 44px;
       height: 44px;
       border-radius: 50%;
@@ -746,6 +745,8 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      padding: 0;
+      line-height: 1;
       transition: background 0.2s;
       z-index: 1;
     }
@@ -1099,9 +1100,9 @@
 <!-- ═══════════════ LIGHTBOX ═══════════════ -->
 <div class="lightbox" id="lightbox" onclick="closeLightbox()">
   <button class="lightbox-close" onclick="closeLightbox()">×</button>
-  <button class="lightbox-prev" onclick="event.stopPropagation(); slideTo(currentIndex - 1)">&#8249;</button>
+  <button class="lightbox-prev" onclick="event.stopPropagation(); slideTo(currentIndex - 1)"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
   <img id="lightbox-img" src="" alt="크게 보기" onclick="event.stopPropagation()" />
-  <button class="lightbox-next" onclick="event.stopPropagation(); slideTo(currentIndex + 1)">&#8250;</button>
+  <button class="lightbox-next" onclick="event.stopPropagation(); slideTo(currentIndex + 1)"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
   <span class="lightbox-counter" id="lightbox-counter"></span>
 </div>
 
