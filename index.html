@@ -937,8 +937,8 @@
   </div>
 
   <div class="map-btns fade-up">
-    <a href="https://map.kakao.com/?q=%EC%9D%B4%EB%A3%B8%EC%9B%A8%EB%94%A9%EC%BB%A8%EB%B2%A4%EC%85%98" target="_blank" class="map-btn kakao">카카오맵</a>
-    <button class="map-btn naver" onclick="openNaverMap()">네이버지도</button>
+    <button class="map-btn kakao" onclick="openMap('https://map.kakao.com/?q=%EC%9D%B4%EB%A3%B8%EC%9B%A8%EB%94%A9%EC%BB%A8%EB%B2%A4%EC%85%98')">카카오맵</button>
+    <button class="map-btn naver" onclick="openMap('https://map.naver.com/v5/search/%EC%9D%B4%EB%A3%B8%EC%9B%A8%EB%94%A9%EC%BB%A8%EB%B2%A4%EC%85%98')">네이버지도</button>
   </div>
 
   <div class="transport-block fade-up">
@@ -1141,11 +1141,17 @@
   const galleryGrid = document.querySelector('.gallery-grid');
   if (galleryGrid) galleryObserver.observe(galleryGrid);
 
-  // 네이버맵
-  function openNaverMap() {
-    const url = 'https://map.naver.com/v5/search/%EC%9D%B4%EB%A3%B8%EC%9B%A8%EB%94%A9%EC%BB%A8%EB%B2%A4%EC%85%98';
-    const win = window.open(url, '_blank');
-    if (!win || win.closed) window.location.href = url;
+  // 지도 열기 (카카오톡 인앱 브라우저 대응)
+  function openMap(url) {
+    const ua = navigator.userAgent || '';
+    const isKakao = /KAKAOTALK/i.test(ua);
+    if (isKakao) {
+      // 카카오톡 인앱 브라우저 → 외부 브라우저로 강제 전환
+      location.href = 'kakaotalk://web/openExternal?url=' + encodeURIComponent(url);
+    } else {
+      const win = window.open(url, '_blank');
+      if (!win || win.closed) location.href = url;
+    }
   }
 
   // 이미지 보호
