@@ -713,6 +713,36 @@
       display: block;
     }
 
+    .lightbox-stage {
+      position: relative;
+      width: 95vw;
+      height: 90vh;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lightbox-track {
+      display: flex;
+      width: 300%;
+      height: 100%;
+      transform: translateX(-33.3333%);
+    }
+
+    .lightbox-track.snap {
+      transition: transform 0.3s ease;
+    }
+
+    .lightbox-slide {
+      width: 33.3333%;
+      height: 100%;
+      max-width: none;
+      max-height: none;
+      object-fit: contain;
+      flex-shrink: 0;
+    }
+
     .lightbox-close {
       position: absolute;
       top: 16px;
@@ -1095,9 +1125,15 @@
 <!-- ═══════════════ LIGHTBOX ═══════════════ -->
 <div class="lightbox" id="lightbox" onclick="closeLightbox()">
   <button class="lightbox-close" onclick="closeLightbox()">×</button>
-  <button class="lightbox-prev" onclick="event.stopPropagation(); slideTo(currentIndex - 1)"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
-  <img id="lightbox-img" src="" alt="크게 보기" onclick="event.stopPropagation()" />
-  <button class="lightbox-next" onclick="event.stopPropagation(); slideTo(currentIndex + 1)"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
+  <button class="lightbox-prev" onclick="event.stopPropagation(); goToSlide(-1)"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+  <div class="lightbox-stage" onclick="event.stopPropagation()">
+    <div class="lightbox-track" id="lightbox-track">
+      <img class="lightbox-slide" id="lightbox-img-prev" src="" alt="" />
+      <img class="lightbox-slide" id="lightbox-img" src="" alt="크게 보기" />
+      <img class="lightbox-slide" id="lightbox-img-next" src="" alt="" />
+    </div>
+  </div>
+  <button class="lightbox-next" onclick="event.stopPropagation(); goToSlide(1)"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
   <span class="lightbox-counter" id="lightbox-counter"></span>
 </div>
 
@@ -1187,22 +1223,43 @@
   const galleryImages = Array.from(document.querySelectorAll('.gallery-item img')).map(img => img.getAttribute('src'));
   let currentIndex = 0;
 
+  const lightboxTrack = document.getElementById('lightbox-track');
+  const lightboxStage = document.querySelector('.lightbox-stage');
+  const imgPrevEl = document.getElementById('lightbox-img-prev');
+  const imgCurrentEl = document.getElementById('lightbox-img');
+  const imgNextEl = document.getElementById('lightbox-img-next');
+
+  function stageWidth() {
+    return lightboxStage.offsetWidth;
+  }
+
   function openLightbox(index) {
     currentIndex = index;
-    showSlide(currentIndex);
+    renderSlides();
     document.getElementById('lightbox').classList.add('active');
     document.body.style.overflow = 'hidden';
   }
 
-  function showSlide(idx) {
-    const img = document.getElementById('lightbox-img');
-    img.src = galleryImages[idx];
-    document.getElementById('lightbox-counter').textContent = (idx + 1) + ' / ' + galleryImages.length;
+  function renderSlides() {
+    const prevIdx = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+    const nextIdx = (currentIndex + 1) % galleryImages.length;
+    imgPrevEl.src = galleryImages[prevIdx];
+    imgCurrentEl.src = galleryImages[currentIndex];
+    imgNextEl.src = galleryImages[nextIdx];
+    document.getElementById('lightbox-counter').textContent = (currentIndex + 1) + ' / ' + galleryImages.length;
+    lightboxTrack.classList.remove('snap');
+    lightboxTrack.style.transform = `translateX(-${stageWidth()}px)`;
   }
 
-  function slideTo(idx) {
-    currentIndex = (idx + galleryImages.length) % galleryImages.length;
-    showSlide(currentIndex);
+  // direction: 1 = 다음 사진, -1 = 이전 사진
+  function goToSlide(direction) {
+    lightboxTrack.classList.add('snap');
+    lightboxTrack.style.transform = `translateX(-${stageWidth() * (1 + direction)}px)`;
+    lightboxTrack.addEventListener('transitionend', function handler() {
+      lightboxTrack.removeEventListener('transitionend', handler);
+      currentIndex = (currentIndex + direction + galleryImages.length) % galleryImages.length;
+      renderSlides();
+    }, { once: true });
   }
 
   function closeLightbox() {
@@ -1214,17 +1271,38 @@
     const lb = document.getElementById('lightbox');
     if (!lb.classList.contains('active')) return;
     if (e.key === 'Escape') closeLightbox();
-    if (e.key === 'ArrowRight') slideTo(currentIndex + 1);
-    if (e.key === 'ArrowLeft') slideTo(currentIndex - 1);
+    if (e.key === 'ArrowRight') goToSlide(1);
+    if (e.key === 'ArrowLeft') goToSlide(-1);
   });
 
-  // 모바일 스와이프
+  // 모바일 스와이프 (손가락을 따라 부드럽게 이동, 손을 떼면 다음/이전 사진으로 스냅)
   let touchStartX = 0;
+  let dragOffset = 0;
+  let isDragging = false;
   const lightboxEl = document.getElementById('lightbox');
-  lightboxEl.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
-  lightboxEl.addEventListener('touchend', e => {
-    const diff = touchStartX - e.changedTouches[0].clientX;
-    if (Math.abs(diff) > 50) slideTo(diff > 0 ? currentIndex + 1 : currentIndex - 1);
+
+  lightboxEl.addEventListener('touchstart', e => {
+    touchStartX = e.touches[0].clientX;
+    isDragging = true;
+    lightboxTrack.classList.remove('snap');
+  }, { passive: true });
+
+  lightboxEl.addEventListener('touchmove', e => {
+    if (!isDragging) return;
+    dragOffset = e.touches[0].clientX - touchStartX;
+    lightboxTrack.style.transform = `translateX(${-stageWidth() + dragOffset}px)`;
+  }, { passive: true });
+
+  lightboxEl.addEventListener('touchend', () => {
+    if (!isDragging) return;
+    isDragging = false;
+    lightboxTrack.classList.add('snap');
+    if (Math.abs(dragOffset) > 50) {
+      goToSlide(dragOffset < 0 ? 1 : -1);
+    } else {
+      lightboxTrack.style.transform = `translateX(-${stageWidth()}px)`;
+    }
+    dragOffset = 0;
   });
 
   // 카운트다운
