@@ -1252,13 +1252,17 @@
   }
 
   // direction: 1 = 다음 사진, -1 = 이전 사진
+  let isSliding = false;
   function goToSlide(direction) {
+    if (isSliding) return;
+    isSliding = true;
     lightboxTrack.classList.add('snap');
     lightboxTrack.style.transform = `translateX(-${stageWidth() * (1 + direction)}px)`;
     lightboxTrack.addEventListener('transitionend', function handler() {
       lightboxTrack.removeEventListener('transitionend', handler);
       currentIndex = (currentIndex + direction + galleryImages.length) % galleryImages.length;
       renderSlides();
+      isSliding = false;
     }, { once: true });
   }
 
@@ -1282,6 +1286,7 @@
   const lightboxEl = document.getElementById('lightbox');
 
   lightboxEl.addEventListener('touchstart', e => {
+    if (isSliding) return;
     touchStartX = e.touches[0].clientX;
     isDragging = true;
     lightboxTrack.classList.remove('snap');
