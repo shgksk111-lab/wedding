@@ -585,6 +585,9 @@
     .copy-btn:active { opacity: 0.4; }
     .copy-btn svg { width: 16px; height: 16px; }
 
+    /* ─── SHUTTLE BUS ─── */
+    #bus { padding: 80px 17px; }
+
     /* ─── CLOSING QUOTE ─── */
     .closing {
       position: relative;
@@ -1109,6 +1112,60 @@
       </button>
     </div>
   </div>
+</section>
+
+<!-- ═══════════════ 08 SHUTTLE BUS ═══════════════ -->
+<section id="bus">
+  <div class="section-header">
+    <span class="section-num">08</span>
+    <span class="section-title">SHUTTLE BUS</span>
+  </div>
+
+  <p class="account-desc">
+    천안에서 예식장까지 오시는 길이<br>
+    멀고 번거로우실 하객분들을 위해<br>
+    관광버스를 준비하였습니다.<br>
+    편하게 이용해 주시기 바랍니다.
+  </p>
+
+  <div class="map-container">
+    <iframe
+      src="https://www.openstreetmap.org/export/embed.html?bbox=127.1090%2C36.8101%2C127.1190%2C36.8201&layer=mapnik&marker=36.8151%2C127.1140"
+      style="width:100%;height:300px;border:none;"
+      allowfullscreen
+      loading="lazy">
+    </iframe>
+  </div>
+
+  <div class="map-btns fade-up">
+    <button class="map-btn naver" onclick="openMap('https://map.naver.com/v5/search/%EC%B2%9C%EC%95%88%EC%8B%9C%EC%B2%AD')" style="grid-column:1/-1;">네이버지도 열기</button>
+  </div>
+
+  <div class="transport-block fade-up">
+    <p class="transport-text">
+      <span style="font-weight:700">📍 출발 장소</span><br>
+      <span class="sub">천안시청 정문 봉서홀 앞</span>
+    </p>
+  </div>
+
+  <div class="transport-divider"></div>
+
+  <div class="transport-block fade-up">
+    <p class="transport-text">
+      <span style="font-weight:700">📍 천안 출발 시간</span><br>
+      <span class="sub">오전 9시 30분</span>
+    </p>
+  </div>
+
+  <div class="transport-divider"></div>
+
+  <div class="transport-block fade-up">
+    <p class="transport-text">
+      <span style="font-weight:700">📍 복귀 시간</span><br>
+      <span class="sub">오후 2시</span>
+    </p>
+  </div>
+
 </section>
 
 <!-- ═══════════════ CLOSING QUOTE ═══════════════ -->
