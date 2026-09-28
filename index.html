@@ -1312,8 +1312,14 @@
   }
 
   function openLightbox(index) {
+    cancelSlide();
     currentIndex = index;
+    // 새 사진이 준비될 때까지 이전에 보던 사진이 비치지 않도록 잠깐 숨김
+    lightboxTrack.style.visibility = 'hidden';
     renderSlides();
+    const showTrack = () => { lightboxTrack.style.visibility = ''; };
+    if (imgCurrentEl.complete) showTrack();
+    else imgCurrentEl.addEventListener('load', showTrack, { once: true });
     document.getElementById('lightbox').classList.add('active');
     document.body.style.overflow = 'hidden';
   }
@@ -1331,20 +1337,36 @@
 
   // direction: 1 = 다음 사진, -1 = 이전 사진
   let isSliding = false;
+  let slideTimer = null;
+  let pendingFinish = null;
+
+  // 진행 중인 넘김 동작을 취소 (끝나지 않은 넘김이 나중에 엉뚱한 사진으로 바꾸는 것 방지)
+  function cancelSlide() {
+    clearTimeout(slideTimer);
+    if (pendingFinish) lightboxTrack.removeEventListener('transitionend', pendingFinish);
+    pendingFinish = null;
+    isSliding = false;
+  }
+
   function goToSlide(direction) {
     if (isSliding) return;
     isSliding = true;
     lightboxTrack.classList.add('snap');
     lightboxTrack.style.transform = `translateX(-${stageWidth() * (1 + direction)}px)`;
-    lightboxTrack.addEventListener('transitionend', function handler() {
-      lightboxTrack.removeEventListener('transitionend', handler);
+    const finish = (e) => {
+      if (e && e.target !== lightboxTrack) return;
+      cancelSlide();
       currentIndex = (currentIndex + direction + galleryImages.length) % galleryImages.length;
       renderSlides();
-      isSliding = false;
-    }, { once: true });
+    };
+    pendingFinish = finish;
+    lightboxTrack.addEventListener('transitionend', finish);
+    // 애니메이션 끝 신호가 안 오는 경우를 대비한 안전장치
+    slideTimer = setTimeout(finish, 400);
   }
 
   function closeLightbox() {
+    cancelSlide();
     document.getElementById('lightbox').classList.remove('active');
     document.body.style.overflow = '';
   }
